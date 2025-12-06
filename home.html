@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="./placeholder/iconTap.png">
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <title>Home</title>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<style>
+    /* تصفير الهوامش لجميع العناصر */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* ضمان تصفير هامش الـ body بشكل قاطع */
+    body {
+        background-color: #f0ecff;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* تحسين إظهار الظل وضمان أن العرض يعمل بشكل جيد على الشاشات الصغيرة */
+    .shadow-container {
+        /* تطبيق الظل والزوايا الدائرية على الحاوية الخارجية */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        /* لتطبيق الزوايا الدائرية */
+        overflow: hidden;
+        /* لضمان أن العناصر الداخلية (مثل الـ navbar) لا تتجاوز الحدود */
+    }
+
+    /* إزالة الزوايا الدائرية الافتراضية من الـ navbar لجعلها تتمدد بشكل كامل */
+    .navbar {
+        border-radius: 0 !important;
+    }
+
+    .navbar #btnKhodairy,
+    .navbar #btnHome,
+    .navbar #btnProfile {
+        transition: 0.5s;
+    }
+
+    .navbar #btnKhodairy:hover,
+    .navbar #btnHome:hover,
+    .navbar #btnProfile:hover {
+        color: #0d6efd;
+    }
+
+    .navbar .active {
+        color: #0d6efd !important;
+        font-weight: bold;
+        border-bottom: 2px solid #0d6efd;
+        transition: 0.3s;
+    }
+
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    .postPic {
+        height: 500px;
+    }
+
+    #btnForPost {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        z-index: 1;
+        display: none;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #btnForPost button {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        /* دائرة كاملة */
+        font-size: 35px;
+        /* حجم أيقونة + */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        /* إزالة الحدود الافتراضية */
+        /* نفس اللون bg-dark */
+        color: white;
+        /* لون الأيقونة */
+    }
+
+
+
+
+    @media (max-width: 768px) {
+
+        /* تقليل حجم الـ navbar على الهاتف */
+        .shadow-container {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+        }
+
+        .postPic {
+            height: 300px;
+        }
+
+        #profilePhoto {
+            width: 35px !important;
+            height: 35px !important;
+        }
+
+        .profile-pic {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* ضبط الـ gap والـ padding للهاتف */
+        .d-flex.gap-1 {
+            gap: 0.25rem !important;
+        }
+
+        /* تقليل حجم البطاقات */
+        .card {
+            margin: 0.75rem 0 !important;
+        }
+
+        .card-header {
+            padding: 0.75rem !important;
+        }
+
+        .card-body {
+            padding: 0.75rem !important;
+        }
+
+        /* ضبط الـ modal على الهاتف */
+        .modal-dialog {
+            margin: 0.5rem !important;
+        }
+
+        /* إضافة مساحة تحت الـ navbar */
+        .container.mt-4 {
+            margin-top: 120px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        #btnForPost {
+            width: 70px;
+            height: 70px;
+            bottom: 20px;
+            right: 15px;
+        }
+
+        #btnForPost button {
+            font-size: 24px;
+        }
+
+        .shadow-container {
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .navbar {
+            padding: 0.5rem 0 !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.1rem;
+            margin: 0 !important;
+        }
+
+        .nav-link {
+            padding: 0.25rem 0.5rem !important;
+            font-size: 0.9rem;
+        }
+
+        #profileName {
+            font-size: 0.85rem;
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-outline-success,
+        .btn-outline-danger {
+            padding: 0.375rem 0.75rem !important;
+            font-size: 0.85rem;
+        }
+
+        .postPic {
+            height: 250px;
+        }
+
+        .profile-pic {
+            width: 30px;
+            height: 30px;
+        }
+
+        #profilePhoto {
+            width: 30px !important;
+            height: 30px !important;
+        }
+
+        .card {
+            margin: 0.5rem 0 !important;
+        }
+
+        .card-header {
+            padding: 0.5rem !important;
+            flex-wrap: wrap;
+        }
+
+        .card-header div {
+            flex: 1 1 100%;
+        }
+
+        .card-body {
+            padding: 0.5rem !important;
+        }
+
+        h5 {
+            font-size: 1rem !important;
+        }
+
+        h6 {
+            font-size: 0.8rem !important;
+        }
+
+        p {
+            font-size: 0.9rem !important;
+        }
+
+        span {
+            font-size: 0.85rem;
+        }
+
+        /* ضبط الـ navbar الثابت */
+        .d-flex.justify-content-center {
+            left: 0 !important;
+            right: 0 !important;
+            top: 5px !important;
+        }
+
+        .col-12.col-md-9 {
+            width: 100% !important;
+        }
+
+        .container.p-0 {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .container.mt-4 {
+            margin-top: 110px !important;
+            padding: 0 10px !important;
+        }
+
+        #liveAlertPlaceholder {
+            min-width: 90vw !important;
+            right: 5vw !important;
+            bottom: 50px !important;
+        }
+    }
+
+    .logo {
+        font-size: 26px;
+        font-weight: 700;
+        color: #000;
+        /* Vibe */
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .logo-accent {
+        color: #0d6efd;
+    }
+</style>
+
+<body>
+    <!-- ================ button for post aricle ============== -->
+    <div id="btnForPost" class="rounded-circle bg-primary">
+        <button type="button" id="postModalLabel"
+            class="btn btn-primary d-flex align-items-center justify-content-center" data-bs-toggle="modal"
+            data-bs-target="#createPostModel" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i></button>
+        </button>
+    </div>
+
+    <!-- ================ Show Alert ================== -->
+    <div id="liveAlertPlaceholder"
+        style="position: fixed; bottom: 10px; right: 30px; min-width: 400px; z-index: 99999 !important;">
+    </div>
+
+    <!-- =================== NavBar ================== -->
+    <div class="container p-0">
+        <div class="d-flex justify-content-center"
+            style="position: fixed; top: 10px; left: 0; z-index: 1; width: 100%;">
+            <div class="col-12 col-md-9 shadow-container rounded-bottom-0">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a id="btnKhodairy" class="logo navbar-brand" href="./home.html">VibePost</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a id="btnHome" class="active nav-link active" aria-current="page"
+                                        href="./home.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btnProfile" class="nav-link" onClick="profileClicked()"
+                                        style="cursor: pointer;">Profile</a>
+                                </li>
+                            </ul>
+                            <!-- Buttons -->
+                            <div class="d-flex align-items-center gap-1">
+                                <div class="d-flex align-items-center" style="margin-right: 5px;">
+                                    <div style="margin-right: 5px;"><img id="profilePhoto" src=""
+                                            style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;"
+                                            alt="">
+                                    </div>
+                                    <span id="profileName"></span>
+                                </div>
+                                <button type="button" id="btnLogout" class="btn btn-outline-danger">Logout</button>
+                            </div>
+                            <div>
+                                <button type="button" id="btnLogin" class="btn btn-outline-success"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    data-bs-whatever="@mdo">Login</button>
+                                <button type="button" id="btnRegister" class="btn btn-outline-success"
+                                    data-bs-toggle="modal" data-bs-target="#registerModal"
+                                    data-bs-whatever="@mdo">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= main Content ================== -->
+    <div class="container mt-4 p-0">
+        <div class="d-flex justify-content-center">
+            <div class="col-12 col-md-9">
+                <!-- ============= posts ============ -->
+                <div class="posts">
+                    <!-- ============= post 1 ============ -->
+                    <div class="card mb-4 shadow my-5">
+                        <div class="card-header">
+                            <img class="profile-pic rounded-circle border border-2"
+                                src="./profile-pic/photo_2024-04-13_17-27-44.jpg" alt="">
+                            <span>Khodairy</span>
+                        </div>
+                        <div class="card-body">
+                            <img class="w-100 rounded" src="./placeholder/pic-1.jpg" alt="">
+                            <h6 class="card-title mt-1" style="color: rgb(186, 184, 184);">2 min ago</h6>
+                            <h5>This is the title of the body</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. In adipisci
+                                praesentium voluptas provident, libero laborum commodi veritatis sequi corrupti nostrum
+                                facere ipsa nesciunt modi ut perferendis enim expedita illo eius.
+                            </p>
+                            <hr>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path
+                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                                </svg> <span>(3) comment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- =========== Loading Spinner =========== -->
+                <div style="display: flex; justify-content: center;">
+                    <div id="loading" style="position: absolute; ; display: none; z-index: 1000;"
+                        class="text-center my-4">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== modal for login ============= -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name1" class="col-form-label">User Name:</label>
+                            <input type="text" class="userNameInput form-control" id="recipient-name1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text1" class="col-form-label">Password:</label>
+                            <input type="password" class="passwordInput form-control" id="message-text1">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btnLogin btn btn-primary" id="liveAlertBtn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- =========== modal for register ============= -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="regiseterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Register A New User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name2" class="col-form-label">User Name:</label>
+                            <input id="userForRegister" type="text" class="userNameInput form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text2" class="col-form-label">Password:</label>
+                            <input id="passwordForRegister" type="password" class="passwordInput form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text3" class="col-form-label">Nick Name:</label>
+                            <input id="nicknameForRegister" type="text" class="passwordInput form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text4" class="col-form-label">Email:</label>
+                            <input id="emailForRegister" type="email" class="passwordInput form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text5" class="col-form-label">Profile Image:</label>
+                            <input id="imageForRegister" type="file" accept="image/*"
+                                class="passwordInput form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btnRegister btn btn-primary" id="liveAlertBtn">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =========== modal for Posts ============= -->
+    <div class="modal fade" id="createPostModel" tabindex="-1" aria-labelledby="posteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="postModalLapel modal-title fs-5" id="deleteModalLabel">Create New Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name3" class="col-form-label">Title:</label>
+                            <input type="text" class="titlePostInput form-control" id="recipient-name3">
+                            <input type="hidden" id="inputValueId" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text6" class="col-form-label">Body:</label>
+                            <textarea class="form-control" id="bodyPostInput"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text7" class="col-form-label">Image:</label>
+                            <input type="file" class="imagePostInput form-control" id="message-text7">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btnCreatePost btn btn-primary" id="liveAlertBtn">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== modal for delete posts ============== -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Warning</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Are you sure you want to delete this post?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnDeletePost" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./main.js"></script>
+
+</html>
