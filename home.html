@@ -292,6 +292,16 @@
     .logo-accent {
         color: #0d6efd;
     }
+
+    .navbar-toggler i {
+        font-size: 24px;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-toggler {
+            display: none !important;
+        }
+    }
 </style>
 
 <body>
@@ -319,7 +329,9 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                             aria-label="Toggle navigation">
+                            <i class="fa-solid fa-bars"></i>
                         </button>
+
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
@@ -332,7 +344,7 @@
                                 </li>
                             </ul>
                             <!-- Buttons -->
-                            <div class="d-flex align-items-center gap-1">
+                            <div id="hambergIcon" class="d-flex align-items-center gap-1">
                                 <div class="d-flex align-items-center" style="margin-right: 5px;">
                                     <div style="margin-right: 5px;"><img id="profilePhoto" src=""
                                             style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;"
