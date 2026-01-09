@@ -55,6 +55,32 @@ The project simulates core social media functionality while keeping the codebase
 ---
 
 ## 🚀 Installation & Run Locally
-1. Clone the repository:
+
+Follow these steps to run the project locally on your machine:
+
+1. Clone the repository from GitHub:
 ```bash
 git clone https://github.com/Khodairy/vibePost.git
+```
+
+
+2. **Navigate to the project directory:**
+```bash
+cd vibePost
+```
+
+3. **Run the project:**
+- Open `index.html` directly in your browser  
+**or**  
+- Open the project in **VS Code** and run it using the **Live Server** extension
+
+> This project runs directly in the browser without any dependencies or build tools.
+
+---
+
+## 👤 Author
+**Abdallah Khodairy**  
+- Front-End Developer  
+- GitHub: [@Khodairy](https://github.com/Khodairy)
+
+
