@@ -109,5 +109,5 @@ vibePost/
 
 - Front-End Developer
 - GitHub: [@Khodairy](https://github.com/Khodairy)
-- [LinkedIn](https://www.linkedin.com/in/abdallah-khodairy/)
-- [Portfolio](https://abdallakhodairy-portfolio.netlify.app/)```
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/abdallah-khodairy/)
+- Portfolio: [Portfolio](https://abdallakhodairy-portfolio.netlify.app/)
