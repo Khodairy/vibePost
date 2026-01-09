@@ -6,16 +6,19 @@
 ---
 
 ## 📸 Preview
+
 [![Vibe Posts Preview](./profile-pic/vibePost.png)](https://vibeposts.netlify.app/home)
 
 ---
 
 ## 🌐 Live Demo
+
 🔗 https://vibeposts.netlify.app/home
 
 ---
 
 ## 📖 Project Description
+
 Vibe Posts is a lightweight social media platform that allows users to:
 
 - Register and log in
@@ -29,6 +32,7 @@ The project simulates core social media functionality while keeping the codebase
 ---
 
 ## 🎯 Project Goals
+
 - Practice working with **REST APIs**
 - Master **Vanilla JavaScript** without frameworks
 - Understand real-world CRUD operations
@@ -37,6 +41,7 @@ The project simulates core social media functionality while keeping the codebase
 ---
 
 ## 🛠 Tech Stack
+
 - HTML5
 - CSS3
 - Bootstrap
@@ -46,6 +51,7 @@ The project simulates core social media functionality while keeping the codebase
 ---
 
 ## ✨ Features
+
 - User authentication
 - Create, edit, and delete posts
 - Comment system
@@ -59,28 +65,49 @@ The project simulates core social media functionality while keeping the codebase
 Follow these steps to run the project locally on your machine:
 
 1. Clone the repository from GitHub:
+
 ```bash
 git clone https://github.com/Khodairy/vibePost.git
 ```
 
-
 2. **Navigate to the project directory:**
+
 ```bash
 cd vibePost
 ```
 
 3. **Run the project:**
+
 - Open `index.html` directly in your browser  
-**or**  
+  **or**
 - Open the project in **VS Code** and run it using the **Live Server** extension
 
 > This project runs directly in the browser without any dependencies or build tools.
 
 ---
 
+## 📁 Project Structure
+
+```text
+vibePost/
+├── placeholder/          # Temporary placeholder images
+├── profile-pic/          # User profile pictures
+├── home.html             # Main landing page
+├── postDetails.html      # Post details and comments page
+├── profile.html          # User profile page
+├── main.js               # Main JavaScript logic
+├── package.json          # Project metadata and dependencies
+├── .gitignore            # Files and folders ignored by Git
+└── README.md             # Project documentation
+```
+
+---
+
 ## 👤 Author
-**Abdallah Khodairy**  
-- Front-End Developer  
+
+**Abdallah Khodairy**
+
+- Front-End Developer
 - GitHub: [@Khodairy](https://github.com/Khodairy)
-
-
+- [LinkedIn](https://www.linkedin.com/in/abdallah-khodairy/)
+- [Portfolio](https://abdallakhodairy-portfolio.netlify.app/)```
