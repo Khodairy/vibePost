@@ -76,3 +76,11 @@ cd vibePost
 
 > This project runs directly in the browser without any dependencies or build tools.
 
+---
+
+## 👤 Author
+**Abdallah Khodairy**  
+- Front-End Developer  
+- GitHub: [@Khodairy](https://github.com/Khodairy)
+
+
