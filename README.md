@@ -68,3 +68,11 @@ git clone https://github.com/Khodairy/vibePost.git
 ```bash
 cd vibePost
 ```
+
+3. **Run the project:**
+- Open `index.html` directly in your browser  
+**or**  
+- Open the project in **VS Code** and run it using the **Live Server** extension
+
+> This project runs directly in the browser without any dependencies or build tools.
+
